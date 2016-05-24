@@ -3,5 +3,7 @@ var checkTerrain = function(entity) {
         entity.speed = 50;
     } else if (Game.map[entity._x + "," + entity._y] == Game.tile.woodenTile) {
         entity.speed = 25;
+    } else if (Game.map[entity._x + "," + entity._y] == Game.Tile.rockTile) {
+    entity.speed = 10;
     };
 };

@@ -49,6 +49,18 @@ var Game = {
     }
 }
 
+Game._createEntity = function(placeholder, freeCells, x, y) {
+    if (!x) {
+        var index = Math.floor(ROT.RNG.getUniform() * freeCells.length);
+        var key = freeCells.splice(index, 1)[0];
+        var parts = key.split(",");
+        var x = parseInt(parts[0])
+        var y = parseInt(parts[1])
+    }
+    freeCells = _.without(freeCells, _.findWhere(freeCells, x+','+y)); // If actors exist.
+    return new placeholder(x, y);
+}
+
 Game._reset = function() {
     Game.defeat = false;
     Game.scheduler.clear();
