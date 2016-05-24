@@ -4,6 +4,8 @@ var Game = {
     player: null,
     status: null,
     engine: null,
+    scheduler: new ROT.Scheduler.Speed(),
+    freeCells: [],
 
     init: function() {
         this.display = new ROT.Display();
@@ -35,7 +37,7 @@ var Game = {
     switchScreen: function(screen) {
         if (this.currentScreen !== null) {
             this.currentScreen.exit();
-        }
+        };
 
         this.getDisplay().clear();
 
@@ -49,7 +51,9 @@ var Game = {
 
 Game._reset = function() {
     Game.defeat = false;
+    Game.scheduler.clear();
     Game.display.clear();
     Game.player = null;
     Game.map = null;
+    Game.freeCells = [];
 }
