@@ -2,8 +2,10 @@ var Game = {
     display: null,
     currentScreen: null,
     player: null,
+    coffee: null,
     status: null,
     engine: null,
+    victory: false,
     scheduler: new ROT.Scheduler.Speed(),
     freeCells: [],
 
@@ -62,7 +64,7 @@ Game._createEntity = function(placeholder, freeCells, x, y) {
 }
 
 Game._reset = function() {
-    Game.defeat = false;
+    Game.victory = false;
     Game.scheduler.clear();
     Game.display.clear();
     Game.player = null;

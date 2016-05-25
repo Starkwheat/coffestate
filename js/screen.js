@@ -4,6 +4,7 @@ Game.Screen.introScreen = {
     enter: function() {},
     exit: function() {},
     render: function(display) {
+        display.drawText(32,5, "%c{white} You should drink that steaming cup of coffee.", 40);
     },
 
     handleInput: function(inputType, inputData) {
@@ -19,7 +20,6 @@ Game.Screen.playScreen = {
     enter: function() {},
     exit: function() {},
     render: function(display) {
-        display.drawText(16,1, "%c{brown}Game begins", 40);
         Game._generateMap();
         Game.scheduler.add(Game.player, true);
         Game.engine = new ROT.Engine(Game.scheduler);
@@ -40,7 +40,7 @@ Game.Screen.stopScreen = {
     },
 
     render: function(display) {
-        display.drawText(16,5, "%c{brown}The coffee.", 40);
+        display.drawText(32,5, "%c{white}The coffee was refreshing.", 40);
     },
 
     handleInput: function(inputType, inputData) {

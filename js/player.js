@@ -6,7 +6,7 @@ var Player = function(x, y) {
 }
 
 Player.prototype._draw = function() {
-    Game.display.draw(this._x, this._y, "@", "#FEF");
+    Game.display.draw(this._x, this._y, "@", "#323323");
 }
 
 Player.prototype.getX = function() { return this._x; }
@@ -35,10 +35,35 @@ Player.prototype.handleEvent = function(e) {
     var glyph = Game.map[this._x + ',' + this._y]
     Game.display.draw(this._x, this._y, glyph.getChar(), glyph.getForeground());
 
-    var newCoords = this.checkBounds(this._x, this._y, newX, newY)
+    var newCoords = this._checkBounds(this._x, this._y, newX, newY)
     this._x = newCoords[0];
     this._y = newCoords[1];
     this._draw();
     window.removeEventListener("keydown", this);
     Game.engine.unlock();
+}
+
+Player.prototype._checkBounds = function(x, y, newX, newY) {
+    if (newX <= -1 || newX >= 80) {
+        x;
+    } else {
+        x = newX;
+    };
+
+    if (newY <= -1 || newY >= 25) {
+        y;
+    } else {
+        y = newY;
+    }
+
+    return [x,y];
+}
+
+Player.prototype.act = function () {
+    Game.engine.lock();
+    window.addEventListener("keydown", this);
+}
+
+Player.prototype._checkRock = function() {
+    var key = this._x + "," + this.y;
 }
